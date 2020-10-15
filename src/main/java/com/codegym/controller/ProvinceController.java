@@ -31,6 +31,7 @@ public class ProvinceController {
     }
     @PostMapping
     public ResponseEntity<Province> createProvince(@RequestBody Province province, UriComponentsBuilder ucBuilder) {
+        province.setId(null);
         provinceService.save(province);
         HttpHeaders headers = new HttpHeaders();
         headers.setLocation(ucBuilder.path("/provinces/{id}").buildAndExpand(province.getId()).toUri());
